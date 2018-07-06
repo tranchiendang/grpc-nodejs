@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package work_leave;
+
+service EmployeeLeaveDaysService {
+    rpc eligibleForLeave (Employee) returns (LeaveEligibility);
+    rpc grantLeave (Employee) returns (LeaveFeedback);
+}
+
+message Employee {
+    int32 employee_id = 1;
+    string name = 2;
+    float accrued_leave_days = 3;
+    float requested_leave_days = 4;
+}
+
+message LeaveEligibility {
+    bool eligible = 1;
+}
+
+message LeaveFeedback {
+    bool granted = 1;
+    float accrued_leave_days = 2;
+    float grantd_leave_days = 3;
+}
